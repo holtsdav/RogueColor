@@ -1,0 +1,264 @@
+[gd_scene load_steps=21 format=3 uid="uid://ussfdwbjv0ke"]
+
+[ext_resource type="Script" path="res://Main_Menu.gd" id="1_ggq8q"]
+[ext_resource type="Texture2D" uid="uid://6vnayuuxol5y" path="res://Art/idle.png" id="1_ib14v"]
+[ext_resource type="Shader" path="res://Player.gdshader" id="2_6rjxm"]
+[ext_resource type="FontFile" uid="uid://l7hgfm7orawy" path="res://m5x7.ttf" id="3_l433w"]
+[ext_resource type="Shader" path="res://Menu1.gdshader" id="4_0e1uf"]
+[ext_resource type="Script" path="res://Music_Slider.gd" id="6_gfq16"]
+[ext_resource type="Script" path="res://SFX_Slider.gd" id="7_spw8k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6k5i2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoalw"]
+bg_color = Color(1, 0.968627, 0.968627, 0.25098)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uelpt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdc4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x68tq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptk1h"]
+atlas = ExtResource("1_ib14v")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx5m3"]
+atlas = ExtResource("1_ib14v")
+region = Rect2(80, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtu3y"]
+atlas = ExtResource("1_ib14v")
+region = Rect2(160, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q1bu"]
+atlas = ExtResource("1_ib14v")
+region = Rect2(240, 160, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1omjg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptk1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx5m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtu3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q1bu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xukyj"]
+shader = ExtResource("2_6rjxm")
+shader_parameter/onoff = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqfc3"]
+shader = ExtResource("4_0e1uf")
+shader_parameter/onoff = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sh8av"]
+shader = ExtResource("4_0e1uf")
+shader_parameter/onoff = false
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggq8q")
+
+[node name="Black_BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="White_BG" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Start_Button" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l433w")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_6k5i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eoalw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uelpt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vdc4u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x68tq")
+text = "Start"
+icon_alignment = 1
+
+[node name="Start_Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l433w")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_6k5i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eoalw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uelpt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vdc4u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x68tq")
+text = "Credits"
+icon_alignment = 1
+
+[node name="White_Player" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(225, 140)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_1omjg")
+autoplay = "default"
+frame_progress = 0.624608
+
+[node name="Black_Player" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xukyj")
+position = Vector2(1487, 376)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_1omjg")
+autoplay = "default"
+frame_progress = 0.502523
+offset = Vector2(-56, -23.4)
+
+[node name="Titel_White" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cqfc3")
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -187.5
+offset_top = 60.0
+offset_right = 187.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(673.5, 464)
+theme_override_fonts/font = ExtResource("3_l433w")
+theme_override_font_sizes/font_size = 200
+text = "Rogue"
+horizontal_alignment = 1
+
+[node name="Titel_Black" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_sh8av")
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = 160.0
+offset_right = 225.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(370, -26)
+theme_override_fonts/font = ExtResource("3_l433w")
+theme_override_font_sizes/font_size = 200
+text = "Color"
+horizontal_alignment = 1
+
+[node name="Music_Slider" type="HSlider" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -56.0
+offset_right = 174.0
+offset_bottom = -40.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+min_value = -30.0
+max_value = 30.0
+step = 0.0
+value = -15.0
+script = ExtResource("6_gfq16")
+
+[node name="Music_Label" type="Label" parent="Music_Slider"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -1.5
+offset_top = -18.5
+offset_right = 38.5
+offset_bottom = 4.5
+theme_override_fonts/font = ExtResource("3_l433w")
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX_Slider" type="HSlider" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -112.0
+offset_right = 174.0
+offset_bottom = -96.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+min_value = -30.0
+max_value = 30.0
+step = 0.0
+value = -15.0
+script = ExtResource("7_spw8k")
+
+[node name="SFX_Label" type="Label" parent="SFX_Slider"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -5.5
+offset_top = -18.5
+offset_right = 34.5
+offset_bottom = 4.5
+theme_override_fonts/font = ExtResource("3_l433w")
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Start_Button2" to="." method="_on_start_button_2_pressed"]

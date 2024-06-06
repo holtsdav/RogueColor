@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfg5ej3ynew1p"]
+
+[ext_resource type="Shader" path="res://Player.gdshader" id="1_1b32f"]
+[ext_resource type="Script" path="res://Knife.gd" id="1_sxrxs"]
+[ext_resource type="Texture2D" uid="uid://bsm4dubngu41n" path="res://Art/Screenshot 2024-05-20 at 16.25.54.png" id="2_ooj21"]
+[ext_resource type="AudioStream" uid="uid://b1vcd02i14sk" path="res://SFX/footstep_carpet_001.ogg" id="4_vsk02"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17j64"]
+shader = ExtResource("1_1b32f")
+shader_parameter/onoff = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x55mj"]
+radius = 6.0
+height = 20.0
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(4, 4)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_sxrxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_17j64")
+position = Vector2(0, -5)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_ooj21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_x55mj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vsk02")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5gn621fhg7io"]
+
+[ext_resource type="AudioStream" uid="uid://cd0h4dwjhvhus" path="res://Music/Three Red Hearts - Candy.ogg" id="1_a6wr5"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_a6wr5")
+volume_db = -15.0
+autoplay = true

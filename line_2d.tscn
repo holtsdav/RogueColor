@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://syntaioyhn6t"]
+
+[ext_resource type="Script" path="res://Line2D.gd" id="1_1fl1s"]
+
+[sub_resource type="Curve" id="Curve_25jco"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Line2D" type="Line2D"]
+show_behind_parent = true
+z_index = -1
+width_curve = SubResource("Curve_25jco")
+script = ExtResource("1_1fl1s")

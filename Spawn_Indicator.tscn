@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhe6abw3vmkov"]
+
+[ext_resource type="Texture2D" uid="uid://bvknmvs8c6jub" path="res://Art/Spawn_indicator.png" id="1_00igo"]
+[ext_resource type="Shader" path="res://Spawn_Indicator.gdshader" id="1_4ciqd"]
+[ext_resource type="Script" path="res://Spawn_Indicator.gd" id="3_t6078"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s5sm"]
+shader = ExtResource("1_4ciqd")
+shader_parameter/onoff = false
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1s5sm")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_00igo")
+script = ExtResource("3_t6078")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
